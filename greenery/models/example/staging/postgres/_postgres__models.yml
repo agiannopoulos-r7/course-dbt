@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: addresses
+  - name: events
+  - name: order_items
+  - name: orders
+  - name: products
+  - name: promos
+  - name: users
