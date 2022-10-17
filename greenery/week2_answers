@@ -58,3 +58,10 @@ TESTS
     source_postgres_promos: check that promo_id and discount are not null.
 
     source_postgres_users: check that no columns in the table contain null values as these are key user details and check that user id is unique to use as the primary key.
+
+
+
+-----------------------------------------------
+SNAPSHOTS
+
+Unable to run snapshot. (Planning to revisit this on Monday)
