@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: product_events_daily_fact
+    description: "Lists all events by event type and products on a daily basis"
+    tests:
+    - not_null

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: core_dim_product
+    description: "Lists products by name and ID as well as how many have sold, how much is in inventory, price, and order volume"
+
+  - name: core_dim_users
+    description: "Shows user information: name, addresses, number of orders placed, number of products owned, and falgs for repeat customers"

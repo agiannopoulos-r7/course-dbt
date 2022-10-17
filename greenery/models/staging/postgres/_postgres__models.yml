@@ -1,0 +1,148 @@
+version: 2
+
+models:
+  - name: source_postgres_addresses
+    description: ""
+    tests:
+    - not_null
+
+    columns:
+      - name: address_id
+
+      - name: address
+
+      - name: zipcode
+     
+      - name: state
+      
+      - name: country
+
+  - name: source_postgres_events
+    description: ""
+    columns:
+      - name: event_id
+        tests:
+         - not_null
+         - unique
+      
+      - name: session_id
+        tests:
+         - not_null
+      
+      - name: user_id
+        tests:
+         - not_null
+      
+      - name: page_url
+      
+      - name: created_at
+      
+      - name: event_type
+      
+      - name: order_id
+      
+      - name: product_id
+
+  - name: source_postgres_order_items
+    description: ""
+    coumns:
+      - name: order_id
+        tests:
+         - not_null
+     
+      - name: item_id
+        tests:
+         - not_null
+     
+      - name: quanitity
+        tests:
+         - not_null
+
+
+  - name: source_postgres_orders
+    description: ""
+    columns:
+      - name: order_id
+        tests:
+         - not_null
+         - unique
+      
+      - name: user_id
+        tests:
+         - not_null
+      
+      - name: promo_id
+      
+      - name: address_id
+        tests:
+         - not_null
+      
+      - name: created_at
+      
+      - name: order_cost
+      
+      - name: shipping_cost
+      
+      - name: order_total
+      
+      - name: tracking_id
+      
+      - name: shipping_service
+      
+      - name: estimated_delivery_at
+      
+      - name: delivered_at
+      
+      - name: status
+
+  - name: source_postgres_products
+    description: ""
+    columns: 
+    - name: product_id
+      tests:
+        - not_null
+    
+    - name: name
+      tests:
+        - not_null
+    
+    - name: price
+    
+    - name: inventory
+
+  - name: source_postgres_promos
+    description: ""
+    columns:
+      - name: promo_id
+        tests:
+          - not_null
+      
+      - name: discount
+        tests:
+          - not_null
+     
+      - name: status
+
+  - name: source_postgres_users
+    description: ""
+    tests:
+      - not_null
+    columns:
+      - name: user_id
+        tests:
+         - unique
+
+      - name: first_name
+      
+      - name: last_name
+      
+      - name: email
+      
+      - name: phone_number
+      
+      - name: created_at
+      
+      - name: updated_at
+      
+      - name: address_id
+    

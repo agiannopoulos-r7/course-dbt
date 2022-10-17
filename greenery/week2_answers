@@ -1,0 +1,60 @@
+
+Repeat Rate = 79.8% (99 out of  124 total customers)
+
+```
+        with counts as(
+            SELECT DISTINCT
+                user_id,
+                CASE WHEN COUNT (DISTINCT order_id)  = 1 THEN 0
+                    WHEN COUNT (DISTINCT order_id)  >=2 THEN 1
+                    END AS productcount
+            FROM orders GROUP BY 1)
+
+        SELECT DISTINCT 
+        SUM(productcount) as repeat_customers, 
+        COUNT(DISTINCT user_id) AS total_customers,
+        SUM(productcount)/COUNT(DISTINCT user_id) as percent_repeat_customers
+        FROM counts
+```
+
+A few indicators of propenstiy to purchasea again that could be explored are:
+    - Customer satisfaction survey results (will purchase again if satified - will NOT if unsatisfied)
+    - Growth in customer employee count/customer size 
+    - Trends among certain industries in which greenery's services may be more impactful
+
+
+----------------------------------------------
+
+Marts Models:
+
+/core:
+    - name: core_dim_product
+    description: "Lists products by name and ID as well as how many have sold, how much is in inventory, price, and order volume to evalaute which producys are the most popular."
+
+  - name: core_dim_users
+    description: "Shows user information: name, addresses, number of orders placed, number of products owned, and flags for repeat customers to better understand our customer base."
+
+
+/marketing:
+    - name: marketing_user_order_fact
+    description: "Shows all orders by user with product, cost, and discount data"
+
+/product:
+  - name: product_events_daily_fact
+    description: "Lists all events by event type and products on a daily basis to analyze which event types lead to the most orders per products, when event activitiy spikes, and how events correlate with sales."
+
+
+ ----------------------------------------------
+TESTS
+
+    source_postgres_addresses: test entire table to check that there are no null values in any column since we need all address details to be able to ship anything to that location and we will need an address id to be able to join to the other data sources.
+
+    source_postgres_events: check that the event id column is not null and is unique to serve as the primary key for this table, then check that session id, user id, and event id are not null.
+
+    source_postgres_order_items: test the entire table to make sure there are no null values as all 3 columns in this table are needed to join to other datasets.
+
+    source_postgres_orders: test for unique and non-null order id to use as the primary key and that address id and order id are not null.
+
+    source_postgres_promos: check that promo_id and discount are not null.
+
+    source_postgres_users: check that no columns in the table contain null values as these are key user details and check that user id is unique to use as the primary key.

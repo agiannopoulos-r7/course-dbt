@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: marketing_user_order_fact
+    description: "Shows all orders by user with product, cost, and discount data"
+    tests:
+    - not_null
