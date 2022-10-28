@@ -15,7 +15,6 @@ with
     select * from {{ ref('source_postgres_promos') }}
   )
 
-SELECT
 
 
 SELECT DISTINCT 

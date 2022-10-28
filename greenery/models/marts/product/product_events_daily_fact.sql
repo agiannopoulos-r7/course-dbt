@@ -1,3 +1,9 @@
+{{
+  config(
+    materialized='table'
+  )
+}}
+
 with
   events as (
     select * from {{ ref('source_postgres_events') }} 

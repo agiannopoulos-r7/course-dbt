@@ -6,3 +6,22 @@ models:
 
   - name: core_dim_users
     description: "Shows user information: name, addresses, number of orders placed, number of products owned, and falgs for repeat customers"
+
+  - name: int_core_coversion_rates_daily
+    description: ""
+    columns:
+      - name: event_date
+        description: "aggregates events to the daily level when multiple events took place throghout the day"
+        tests:
+        - dbt_expectations.expect_column_to_exist
+      - name: all_sessions
+        description: "unique count of all sessions per day"
+        tests:
+        - dbt_expectations.expect_column_to_exist
+      - name: purchase_sessions
+        description: "unique count of sessions that have an order id associated with it"
+        tests:
+        - dbt_expectations.expect_column_to_exist
+
+  - name: int_core_coversion_rates_daily_product
+    description: ""
